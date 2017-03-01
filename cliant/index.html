@@ -7,10 +7,13 @@
 </head>
 <body>
   <div class="message">
-    <form action="" method="">
-
-    </form>
   </div>
-  <<script src="./chat.js"></script>
+  <script>
+    var socket = io.connect();
+    socket.emit('message',{value:'そい'});
+    socket.on('from_server',function(data){
+      conlos.log(data.value);
+    });
+  </script>
 </body>
 </html>
