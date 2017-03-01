@@ -3,32 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <title>chat</title>
+  <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
   <div class="message">
-    <form action="" method="message">
+    <form>
       メッセージフォーム<br>
-      <input type="text" id="name" value="名前" /><br>
-      <input type="textarea" id="massage" value="テスト" /><br>
-      <input type="submit" value="送信する" onclick="massage_form()"/>
+      <!--<input type="text" id="name" value="名前" /><br>-->
+      <input tyope="text" id="username" value="東" /><br>
+      <input type="textarea" id="message" value="テスト" /><br>
+      <input type="button" value="送信" onclick="message_form()" />
+      <!---<input type="submit" value="送信する" onclick="message_form()"/>-->
     </form>
   </div>
   <div class="coment">
 
   </div>
   <script>
-  function massage_form(){
-    //var x = document.getElementById('num').value;
-    var massage = document.getElementById("massage").value;
-    console.log(massage);
-  };
-  
   var socket = io.connect();
-  socket.emit('message',{value:massage});
+  function message_form(){
+    //var x = document.getElementById('num').value;
+    var username = document.getElementById("username").value;
+    var message = document.getElementById("message").value;
+    console.log(username);
+    console.log(message);
+    socket.emit('message',{value:message});
+
+  };
   socket.on('from_server',function(data){
     conlos.log(data.value);
   });
-
   </script>
 </body>
 </html>

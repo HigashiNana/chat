@@ -14,7 +14,7 @@ const io = socketio.listen(server);
 //ioのセットに対してイベントを登録
 io.sockets.on('connection',function(socket){
   console.log(socket);
-  socket.on('massage',function(data){
+  socket.on('message',function(data){
     console.log(data);
     //飛んできたメッセージのデータを返す
     io.sockets.emit('from_server',{value:data.value});
